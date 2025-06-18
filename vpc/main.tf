@@ -42,6 +42,8 @@ resource "aws_internet_gateway" "main" {
   tags = {
     Name = "main"
   }
+
+  # nat gateway for the private subnet
 }
 resource "aws_nat_gateway" "main_nat" {
   allocation_id = aws_eip.main_nat.id
