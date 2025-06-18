@@ -35,6 +35,7 @@ resource "aws_subnet" "private" {
   } 
 }
 
+#internet gatway for the public subnet
 resource "aws_internet_gateway" "main" {
   vpc_id = var.aws_vpc
 
