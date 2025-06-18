@@ -9,7 +9,7 @@ output "public_subnet_id" {
   
 }
 output "private_subnet_id" {
-  description = "The ID of the private subnet created by this module."
+  description = "The ID of the private subnet created by this module. just to make changes"
   value       = aws_subnet.private.id
   
 }
