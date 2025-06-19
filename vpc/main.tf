@@ -11,7 +11,7 @@ resource "aws_vpc" "main" {
 }
 
 resource "aws_subnet" "public" {
-  vpc_id            = var.aws_vpc
+  vpc_id            = aws_vpc.main.id
   cidr_block        = element(var.public_cidr_block, count.index) # Use the first public CIDR block from the variable
   count             = 2
   availability_zone = element(var.availability_zones, count.index) # Use the first availability zone from the variable  
@@ -23,7 +23,7 @@ resource "aws_subnet" "public" {
 }
 
 resource "aws_subnet" "private" {
-  vpc_id            = var.aws_vpc
+  vpc_id            = aws_vpc.main.id
   cidr_block        = element(var.private_cidr_block, count.index) # Use the first private CIDR block from the variable
   count             = 2 # Ensure only the number of private subnet you want is created
   availability_zone = element(var.availability_zones, count.index) # Use the second availability zone from the variable
@@ -37,7 +37,7 @@ resource "aws_subnet" "private" {
 
 #internet gatway for the public subnet
 resource "aws_internet_gateway" "main" {
-  vpc_id = var.aws_vpc
+  vpc_id = aws_vpc.main.id
 
   tags = {
     Name = "main"
@@ -61,7 +61,7 @@ resource "aws_eip" "main_eip" {
   }
 }
 resource "aws_route_table" "public" {
-  vpc_id = var.aws_vpc
+  vpc_id = aws_vpc.main.id
 
   route {
     cidr_block = "0.0.0/0"
@@ -72,7 +72,7 @@ resource "aws_route_table" "public" {
   }
 }
 resource "aws_route_table" "private" {
-  vpc_id = var.aws_vpc
+  vpc_id = aws_vpc.main.id
 
   tags = {
     Name = "private"
