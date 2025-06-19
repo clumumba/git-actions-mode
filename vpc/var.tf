@@ -11,7 +11,7 @@ variable "aws_vpc" {
 }
 variable "public_cidr_block" {
   description = "CIDR block for the public subnet"
-  type        = list(string)
+  type        = list(string) # requires the list type to allow multiple CIDR blocks
   default     = ["10.0.1.0/24", "10.0.3.0/24"]
   
 }
