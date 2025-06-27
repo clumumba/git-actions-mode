@@ -10,7 +10,7 @@ variable "availability_zones" {
   
 # }
 
-# the public-cidr-block
+# the public-cidr-block change
 variable "public_cidr_block" {
   description = "CIDR block for the public subnet"
   type        = list(string) # requires the list type to allow multiple CIDR blocks
